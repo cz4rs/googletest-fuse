@@ -1,0 +1,36 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Test basic usage
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Clone GoogleTest repository
+      run: |
+        git clone https://github.com/google/googletest.git
+    - name: Fuse Google Test
+      run: |
+        # fuse googletest files and check the results
+        ./fuse_gtest_files.py googletest/googletest fused_gtest
+        ls fused_gtest/gtest
+    - name: Fuse Google Mock
+      run: |
+        # fuse googlemock files and check the results
+        ./fuse_gmock_files.py googletest/googlemock fused_gmock
+        ls fused_gmock
+
