@@ -19,7 +19,7 @@ jobs:
         include:
           - distro: 'fedora:intel'
             cxx: 'icpc'
-            backend: 'OPENMP'
+          - distro: 'some:distro'
     runs-on: ubuntu-latest
 
     steps:
