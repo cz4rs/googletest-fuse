@@ -41,4 +41,6 @@ jobs:
         # fuse googlemock files and check the results
         ./fuse_gmock_files.py googletest/googlemock fused_gmock
         ls fused_gmock
-
+    - name: Echo
+      run: |
+        echo ${{ matrix.backend }}
