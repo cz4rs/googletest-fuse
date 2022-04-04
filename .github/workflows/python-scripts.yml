@@ -10,7 +10,16 @@ on:
 
 jobs:
   build:
-
+    continue-on-error: true
+    strategy:
+      matrix:
+        distro: ['fedora:latest', 'ubuntu:latest']
+        cxx: ['g++', 'clang++']
+        backend: ['OPENMP']
+        include:
+          - distro: 'fedora:intel'
+            cxx: 'icpc'
+            backend: 'OPENMP'
     runs-on: ubuntu-latest
 
     steps:
