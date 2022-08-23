@@ -33,4 +33,8 @@ jobs:
         # fuse googlemock files and check the results
         ./fuse_gmock_files.py googletest/googlemock fused_gmock
         ls fused_gmock
-
+    - name: Upload generated files
+      uses: actions/upload-artifact@v3
+      with:
+        name: results
+        path: fused_gtest/gtest/*.cc
